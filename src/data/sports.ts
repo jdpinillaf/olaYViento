@@ -1,0 +1,84 @@
+export interface Sport {
+  slug: string;
+  name: string;
+  icon: string;
+  image: string;
+  shortDescription: string;
+  duration: string;
+  price: string;
+  includes: string[];
+  heroDescription: string;
+}
+
+export const sports: Sport[] = [
+  {
+    slug: 'surf',
+    name: 'Surf',
+    icon: '🏄',
+    image: '/images/sports/surf.jpg',
+    shortDescription: 'Domina las olas del Caribe colombiano con instructores certificados.',
+    duration: '2 horas',
+    price: 'Desde $120.000 COP',
+    includes: ['Tabla de surf', 'Lycra', 'Instructor certificado', 'Seguro'],
+    heroDescription: 'El surf en Barranquilla ofrece olas consistentes ideales para principiantes y surfistas intermedios. Las playas de Puerto Colombia y la costa atlántica brindan condiciones perfectas para aprender durante todo el año.',
+  },
+  {
+    slug: 'kitesurf',
+    name: 'Kitesurf',
+    icon: '🪁',
+    image: '/images/sports/kitesurf.jpg',
+    shortDescription: 'Vuela sobre el agua con el viento del Caribe. Clases para todos los niveles.',
+    duration: '3 horas',
+    price: 'Desde $200.000 COP',
+    includes: ['Kite completo', 'Tabla', 'Arnés', 'Instructor certificado', 'Seguro'],
+    heroDescription: 'Barranquilla es uno de los mejores destinos de kitesurf en Colombia gracias a los vientos alisios del noreste que soplan de diciembre a abril con 20-25 nudos constantes. Santa Verónica y Bocas de Ceniza ofrecen spots de clase mundial.',
+  },
+  {
+    slug: 'wing-foil',
+    name: 'Wing Foil',
+    icon: '🦅',
+    image: '/images/sports/wingfoil.jpg',
+    shortDescription: 'El deporte acuático del momento. Aprende a volar sobre el agua con un wing.',
+    duration: '2 horas',
+    price: 'Desde $180.000 COP',
+    includes: ['Wing', 'Tabla con foil', 'Chaleco', 'Instructor certificado', 'Seguro'],
+    heroDescription: 'El wing foil es el deporte acuático de mayor crecimiento en el mundo y Barranquilla tiene las condiciones ideales para aprenderlo. Viento constante, aguas cálidas y pocos practicantes hacen de esta la oportunidad perfecta para ser pionero.',
+  },
+  {
+    slug: 'windsurf',
+    name: 'Windsurf',
+    icon: '🏄‍♂️',
+    image: '/images/sports/windsurf.jpg',
+    shortDescription: 'Navega con el viento en la tabla. El clásico deporte de viento y agua.',
+    duration: '2 horas',
+    price: 'Desde $150.000 COP',
+    includes: ['Tabla de windsurf', 'Vela', 'Arnés', 'Instructor certificado', 'Seguro'],
+    heroDescription: 'El windsurf combina la emoción de la navegación a vela con la libertad del surf. En Barranquilla, los vientos constantes del Caribe crean condiciones ideales para deslizarte sobre el agua.',
+  },
+  {
+    slug: 'sup',
+    name: 'SUP',
+    icon: '🚣',
+    image: '/images/sports/sup.jpg',
+    shortDescription: 'Stand Up Paddle para relajarte o entrenar en el mar Caribe.',
+    duration: '1.5 horas',
+    price: 'Desde $80.000 COP',
+    includes: ['Tabla SUP', 'Remo', 'Chaleco', 'Instructor'],
+    heroDescription: 'El Stand Up Paddle es perfecto para disfrutar del mar Caribe a tu ritmo. Ideal para todas las edades y niveles de condición física, combina ejercicio completo con la tranquilidad del océano.',
+  },
+  {
+    slug: 'entrenamiento-funcional',
+    name: 'Entrenamiento Funcional',
+    icon: '💪',
+    image: '/images/sports/functional.jpg',
+    shortDescription: 'Programas de acondicionamiento físico orientados a deportes acuáticos.',
+    duration: '1 hora',
+    price: 'Desde $50.000 COP',
+    includes: ['Equipamiento completo', 'Entrenador personal', 'Plan personalizado'],
+    heroDescription: 'Nuestros programas de entrenamiento funcional están diseñados para mejorar tu rendimiento en deportes acuáticos. Fortalece core, equilibrio y resistencia con rutinas específicas para surfistas y riders.',
+  },
+];
+
+export function getSportBySlug(slug: string): Sport | undefined {
+  return sports.find(s => s.slug === slug);
+}

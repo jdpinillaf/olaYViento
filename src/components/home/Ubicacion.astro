@@ -1,0 +1,102 @@
+---
+const sedes = [
+  {
+    name: 'Sede Puerto Mocho',
+    address: 'Playa de Puerto Mocho, Puerto Colombia',
+    mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.0!2d-74.9583!3d11.0128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sPuerto+Mocho!5e0!3m2!1ses!2sco!4v1',
+  },
+  {
+    name: 'Sede Riomar',
+    address: 'Riomar, Barranquilla',
+    mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7832.0!2d-74.8350!3d11.0100!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sRiomar!5e0!3m2!1ses!2sco!4v1',
+  },
+];
+---
+
+<section id="ubicacion" class="py-16 sm:py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-brand-dark mb-3">
+        Nuestras <span class="text-brand-blue">Sedes</span>
+      </h2>
+      <p class="text-gray-600">Dos ubicaciones en Barranquilla y Puerto Colombia</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+      {sedes.map(sede => (
+        <div class="rounded-2xl overflow-hidden shadow-sm border border-gray-200">
+          <div class="aspect-video">
+            <iframe
+              src={sede.mapUrl}
+              width="100%"
+              height="100%"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title={`Ubicación ${sede.name}`}
+            ></iframe>
+          </div>
+          <div class="p-4 bg-gray-50">
+            <h3 class="font-display font-bold text-brand-dark">{sede.name}</h3>
+            <p class="text-gray-600 text-sm">{sede.address}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Contact Info -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+      <div class="bg-gray-50 rounded-2xl p-6">
+        <h3 class="font-display font-bold text-lg text-brand-dark mb-4">Contacto</h3>
+        <ul class="space-y-4">
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-brand-blue mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            <div class="text-gray-600 text-sm">
+              <p class="font-medium text-brand-dark">Playa de Puerto Mocho</p>
+              <p>Riomar, Puerto Colombia, Barranquilla, Atlántico</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-brand-blue mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+            </svg>
+            <a href="tel:+573150031693" class="text-gray-600 hover:text-brand-blue transition-colors">
+              +57 315 003 1693
+            </a>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-brand-blue mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/>
+            </svg>
+            <a href="https://www.instagram.com/escuela_olayviento/" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-brand-blue transition-colors">
+              @escuela_olayviento
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-brand-orange/5 rounded-2xl p-6 border border-brand-orange/20">
+        <h3 class="font-display font-bold text-lg text-brand-dark mb-2">Horarios de Clase</h3>
+        <ul class="space-y-2 text-sm text-gray-600">
+          <li class="flex justify-between"><span>Lunes a Viernes</span><span class="font-medium">6:00 AM - 5:00 PM</span></li>
+          <li class="flex justify-between"><span>Sábados</span><span class="font-medium">6:00 AM - 5:00 PM</span></li>
+          <li class="flex justify-between"><span>Domingos</span><span class="font-medium">7:00 AM - 3:00 PM</span></li>
+        </ul>
+        <p class="text-xs text-gray-500 mt-3">* Horarios sujetos a condiciones climáticas y de viento.</p>
+
+        <a
+          href="https://olayviento.site.agendapro.com/co"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-4 block text-center bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold px-6 py-3 rounded-full transition-all hover:shadow-lg text-sm"
+        >
+          Reservar Clase Online
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

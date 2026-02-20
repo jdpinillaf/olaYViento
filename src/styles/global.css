@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-orange: #FCA424;
+  --color-brand-blue: #54ADDB;
+  --color-brand-yellow: #F7DD40;
+  --color-brand-white: #FFFFFF;
+  --color-brand-dark: #1a1a2e;
+
+  --font-display: 'Fredoka', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}

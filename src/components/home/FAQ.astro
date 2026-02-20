@@ -1,0 +1,58 @@
+---
+const faqs = [
+  {
+    question: '¿Qué deportes acuáticos enseñan en Ola y Viento?',
+    answer: 'Ofrecemos clases de surf, kitesurf, wing foil, windsurf, SUP (Stand Up Paddle) y programas de entrenamiento funcional orientados a deportes acuáticos.',
+  },
+  {
+    question: '¿Necesito experiencia previa para tomar clases?',
+    answer: 'No, todas nuestras clases están diseñadas para todos los niveles, desde principiantes absolutos hasta avanzados. Nuestros instructores adaptan cada sesión a tu nivel.',
+  },
+  {
+    question: '¿Qué incluyen las clases?',
+    answer: 'Todas las clases incluyen el equipamiento completo (tablas, velas, arneses, chalecos), instrucción profesional, teoría de seguridad y práctica en el agua. Solo necesitas traer protector solar y ganas.',
+  },
+  {
+    question: '¿Cuál es la mejor época del año para deportes acuáticos en Barranquilla?',
+    answer: 'Para deportes de viento (kitesurf, wing foil, windsurf), la mejor época es de diciembre a abril y de junio a agosto. El surf funciona todo el año, con mejores olas de diciembre a marzo.',
+  },
+  {
+    question: '¿A partir de qué edad aceptan estudiantes?',
+    answer: 'Para surf y SUP aceptamos desde los 6 años. Para kitesurf y wing foil recomendamos a partir de los 12 años, evaluando caso por caso. Siempre con autorización de los padres.',
+  },
+  {
+    question: '¿Cómo reservo una clase?',
+    answer: 'Puedes reservar directamente por WhatsApp al +57 315 003 1693 o a través de nuestro sistema de reservas en línea. Te recomendamos reservar con al menos 24 horas de anticipación.',
+  },
+  {
+    question: '¿Qué pasa si llueve o no hay viento?',
+    answer: 'Si las condiciones climáticas no son seguras o adecuadas para la clase, la reprogramamos sin costo adicional. Tu seguridad siempre es nuestra prioridad.',
+  },
+];
+---
+
+<section class="py-16 sm:py-24 bg-gray-50">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-brand-dark mb-3">
+        Preguntas <span class="text-brand-orange">Frecuentes</span>
+      </h2>
+    </div>
+
+    <div class="space-y-3">
+      {faqs.map((faq, i) => (
+        <details class="group bg-white rounded-xl border border-gray-200 hover:border-brand-blue/30 transition-colors">
+          <summary class="flex items-center justify-between cursor-pointer p-5 font-medium text-brand-dark list-none">
+            <span class="pr-4">{faq.question}</span>
+            <svg class="w-5 h-5 shrink-0 text-brand-blue transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <div class="px-5 pb-5 text-gray-600 text-sm leading-relaxed border-t border-gray-100 pt-4">
+            {faq.answer}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

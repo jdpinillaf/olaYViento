@@ -1,0 +1,71 @@
+---
+const months = [
+  { name: 'Ene', wind: 'high' },
+  { name: 'Feb', wind: 'high' },
+  { name: 'Mar', wind: 'high' },
+  { name: 'Abr', wind: 'high' },
+  { name: 'May', wind: 'low' },
+  { name: 'Jun', wind: 'medium' },
+  { name: 'Jul', wind: 'medium' },
+  { name: 'Ago', wind: 'medium' },
+  { name: 'Sep', wind: 'low' },
+  { name: 'Oct', wind: 'low' },
+  { name: 'Nov', wind: 'low' },
+  { name: 'Dic', wind: 'high' },
+];
+
+const windColors: Record<string, string> = {
+  high: 'bg-brand-orange text-white',
+  medium: 'bg-brand-yellow text-brand-dark',
+  low: 'bg-gray-200 text-gray-500',
+};
+
+const windLabels: Record<string, string> = {
+  high: '20-30 kts',
+  medium: '15-22 kts',
+  low: '5-12 kts',
+};
+---
+
+<section class="py-16 sm:py-24 bg-gray-50">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-brand-dark mb-3">
+        Temporada de <span class="text-brand-orange">Viento</span>
+      </h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">
+        Barranquilla ofrece dos temporadas de viento al año. Planifica tu experiencia en el mejor momento.
+      </p>
+    </div>
+
+    <!-- Calendar Grid -->
+    <div class="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-12 gap-2 sm:gap-3 mb-8">
+      {months.map(month => (
+        <div class={`rounded-xl p-3 sm:p-4 text-center ${windColors[month.wind]} transition-transform hover:scale-105`}>
+          <div class="font-display font-bold text-sm sm:text-base">{month.name}</div>
+          <div class="text-xs mt-1 opacity-80">{windLabels[month.wind]}</div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Legend -->
+    <div class="flex flex-wrap justify-center gap-4 sm:gap-6 text-sm">
+      <div class="flex items-center gap-2">
+        <div class="w-4 h-4 rounded bg-brand-orange"></div>
+        <span class="text-gray-600">Temporada principal (20-30 kts)</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <div class="w-4 h-4 rounded bg-brand-yellow"></div>
+        <span class="text-gray-600">Segunda temporada (15-22 kts)</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <div class="w-4 h-4 rounded bg-gray-200"></div>
+        <span class="text-gray-600">Viento suave</span>
+      </div>
+    </div>
+
+    <p class="text-center text-gray-500 text-sm mt-6">
+      El surf funciona todo el año. Las mejores olas llegan de diciembre a marzo.
+    </p>
+  </div>
+</section>

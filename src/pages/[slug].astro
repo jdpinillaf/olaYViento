@@ -1,0 +1,221 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import { programmaticPages, type ProgrammaticPage } from '../data/pages';
+import { getSportBySlug } from '../data/sports';
+import { getLocationBySlug } from '../data/locations';
+import {
+  buildLocalBusinessSchema,
+  buildCourseSchema,
+  buildFAQSchema,
+  buildBreadcrumbSchema,
+} from '../lib/schema';
+
+export function getStaticPaths() {
+  return programmaticPages.map(page => ({
+    params: { slug: page.slug },
+    props: { page },
+  }));
+}
+
+interface Props {
+  page: ProgrammaticPage;
+}
+
+const { page } = Astro.props;
+const sport = getSportBySlug(page.sportSlug)!;
+const location = getLocationBySlug(page.locationSlug)!;
+
+const relatedPages = page.relatedSlugs
+  .map(slug => programmaticPages.find(p => p.slug === slug))
+  .filter(Boolean) as ProgrammaticPage[];
+
+const breadcrumbs = [
+  { name: 'Inicio', url: '/' },
+  { name: sport.name, url: `/${page.slug}` },
+  { name: location.name, url: `/${page.slug}` },
+];
+
+const schemas = [
+  buildLocalBusinessSchema(),
+  buildCourseSchema(page),
+  buildFAQSchema(page.faq),
+  buildBreadcrumbSchema(breadcrumbs),
+].filter(Boolean);
+---
+
+<BaseLayout
+  title={page.title}
+  description={page.metaDescription}
+  canonical={`/${page.slug}`}
+  ogImage={sport.image}
+  schemas={schemas}
+>
+  <Header />
+  <main class="pt-20">
+    <!-- Breadcrumb -->
+    <nav class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4" aria-label="Breadcrumb">
+      <ol class="flex items-center gap-2 text-sm text-gray-500 flex-wrap">
+        <li><a href="/" class="hover:text-brand-blue transition-colors">Inicio</a></li>
+        <li><span class="mx-1">/</span></li>
+        <li><span class="text-brand-dark font-medium">{page.h1}</span></li>
+      </ol>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative py-16 sm:py-24 bg-gradient-to-br from-brand-blue to-brand-blue/80 overflow-hidden">
+      <svg class="absolute top-5 right-10 w-32 h-32 text-brand-yellow/15" viewBox="0 0 100 100">
+        <path d="M50 10 C70 10, 90 30, 90 50 C90 70, 70 90, 50 90 C30 90, 15 75, 20 55 C25 35, 40 30, 50 40" fill="none" stroke="currentColor" stroke-width="4"/>
+      </svg>
+      <svg class="absolute bottom-10 left-5 w-24 h-24 text-brand-orange/15" viewBox="0 0 100 100">
+        <path d="M50 10 C70 10, 90 30, 90 50 C90 70, 70 90, 50 90 C30 90, 15 75, 20 55" fill="none" stroke="currentColor" stroke-width="4"/>
+      </svg>
+
+      <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <span class="inline-block text-4xl mb-4">{sport.icon}</span>
+        <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+          {page.h1}
+        </h1>
+        <p class="text-white/90 text-lg max-w-2xl mx-auto leading-relaxed">
+          {page.intro}
+        </p>
+        <a
+          href="#reservar-clase"
+          class="inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange/90 text-white font-bold px-8 py-4 rounded-full text-lg mt-8 transition-all hover:shadow-xl hover:scale-105"
+        >
+          Reserva tu Clase
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- Why Section -->
+    <section class="py-16 sm:py-20 bg-white">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-display text-2xl sm:text-3xl font-bold text-brand-dark mb-6">{page.whyTitle}</h2>
+        <p class="text-gray-600 leading-relaxed text-lg">{page.whyContent}</p>
+      </div>
+    </section>
+
+    <!-- Classes Section -->
+    <section class="py-16 sm:py-20 bg-gray-50">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-display text-2xl sm:text-3xl font-bold text-brand-dark mb-6">{page.classesTitle}</h2>
+        <p class="text-gray-600 leading-relaxed mb-8">{page.classesContent}</p>
+
+        <!-- Includes -->
+        <div class="bg-white rounded-2xl p-6 border border-gray-200">
+          <h3 class="font-display font-bold text-lg text-brand-dark mb-4">Tu clase incluye:</h3>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {sport.includes.map(item => (
+              <li class="flex items-center gap-2 text-gray-600">
+                <svg class="w-5 h-5 text-brand-orange shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Price -->
+        <div class="mt-6 bg-brand-orange/5 rounded-2xl p-6 border border-brand-orange/20 text-center">
+          <p class="text-sm text-gray-600 mb-1">Precio por clase</p>
+          <p class="font-display font-bold text-2xl text-brand-orange">{sport.price}</p>
+          <p class="text-sm text-gray-500 mt-1">Duración: {sport.duration} | Equipos incluidos</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Booking CTA -->
+    <section id="reservar-clase" class="py-16 sm:py-20 bg-brand-yellow/10">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-display text-2xl sm:text-3xl font-bold text-brand-dark mb-4 text-center">
+          Reserva tu clase de {sport.name}
+        </h2>
+        <p class="text-gray-600 mb-8 text-center">Elige tu horario y reserva en línea.</p>
+
+        <!-- AgendaPro Embed -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+          <iframe
+            src="https://olayviento.site.agendapro.com/co"
+            width="100%"
+            height="600"
+            frameborder="0"
+            loading="lazy"
+            title={`Reservar clase de ${sport.name} en Ola y Viento`}
+            class="w-full min-h-[400px] sm:min-h-[600px]"
+          ></iframe>
+        </div>
+
+        <p class="text-center text-gray-500 text-sm mt-4">
+          ¿Prefieres WhatsApp?
+          <a
+            href={`https://wa.me/573150031693?text=Hola%2C%20quiero%20reservar%20una%20clase%20de%20${encodeURIComponent(sport.name)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-brand-blue hover:underline font-medium"
+          >
+            Escríbenos aquí
+          </a>
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-16 sm:py-20 bg-white">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="font-display text-2xl sm:text-3xl font-bold text-brand-dark mb-8">
+          Preguntas Frecuentes
+        </h2>
+        <div class="space-y-3">
+          {page.faq.map(faq => (
+            <details class="group bg-gray-50 rounded-xl border border-gray-200 hover:border-brand-blue/30 transition-colors">
+              <summary class="flex items-center justify-between cursor-pointer p-5 font-medium text-brand-dark list-none">
+                <span class="pr-4">{faq.question}</span>
+                <svg class="w-5 h-5 shrink-0 text-brand-blue transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div class="px-5 pb-5 text-gray-600 text-sm leading-relaxed border-t border-gray-100 pt-4">
+                {faq.answer}
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Pages -->
+    {relatedPages.length > 0 && (
+      <section class="py-16 sm:py-20 bg-gray-50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="font-display text-2xl font-bold text-brand-dark mb-8 text-center">
+            También te puede interesar
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {relatedPages.map(related => {
+              const relatedSport = getSportBySlug(related.sportSlug)!;
+              return (
+                <a
+                  href={`/${related.slug}`}
+                  class="bg-white rounded-xl p-6 border border-gray-200 hover:border-brand-blue/30 hover:shadow-md transition-all group"
+                >
+                  <span class="text-2xl mb-2 block">{relatedSport.icon}</span>
+                  <h3 class="font-display font-bold text-brand-dark group-hover:text-brand-blue transition-colors mb-2">
+                    {related.h1}
+                  </h3>
+                  <p class="text-gray-500 text-sm line-clamp-2">{related.metaDescription}</p>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    )}
+  </main>
+  <Footer />
+</BaseLayout>
