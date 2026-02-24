@@ -1,5 +1,9 @@
 ---
 import { sports } from '../../data/sports';
+import { fetchPricing, applyPricing } from '../../data/pricing';
+
+const pricing = await fetchPricing();
+const mergedSports = sports.map(s => applyPricing(s, pricing));
 
 const sportPages: Record<string, string> = {
   'surf': '/clases-de-surf-barranquilla',
@@ -43,18 +47,29 @@ const sportGradients: Record<string, string> = {
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {sports.map(sport => (
+      {mergedSports.map(sport => (
         <a
           href={sportPages[sport.slug] || '/#reservar'}
           class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-brand-blue/30 hover:-translate-y-1"
         >
-          <div class={`h-48 bg-gradient-to-br ${sportGradients[sport.slug] || 'from-brand-blue/20 to-brand-orange/20'} flex items-center justify-center relative overflow-hidden`}>
-            <!-- Decorative swirl -->
-            <svg class="absolute -bottom-4 -right-4 w-24 h-24 text-white/30" viewBox="0 0 100 100">
-              <path d="M50 10 C70 10, 90 30, 90 50 C90 70, 70 90, 50 90 C30 90, 15 75, 20 55 C25 35, 40 30, 50 40" fill="none" stroke="currentColor" stroke-width="4"/>
-            </svg>
-            <div class="text-brand-blue group-hover:scale-110 transition-transform duration-300" set:html={sportIcons[sport.slug] || ''} />
-          </div>
+          {sport.image?.startsWith('https://') ? (
+            <div class="h-48 overflow-hidden">
+              <img
+                src={sport.image}
+                alt={sport.name}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+              />
+            </div>
+          ) : (
+            <div class={`h-48 bg-gradient-to-br ${sportGradients[sport.slug] || 'from-brand-blue/20 to-brand-orange/20'} flex items-center justify-center relative overflow-hidden`}>
+              <!-- Decorative swirl -->
+              <svg class="absolute -bottom-4 -right-4 w-24 h-24 text-white/30" viewBox="0 0 100 100">
+                <path d="M50 10 C70 10, 90 30, 90 50 C90 70, 70 90, 50 90 C30 90, 15 75, 20 55 C25 35, 40 30, 50 40" fill="none" stroke="currentColor" stroke-width="4"/>
+              </svg>
+              <div class="text-brand-blue group-hover:scale-110 transition-transform duration-300" set:html={sportIcons[sport.slug] || ''} />
+            </div>
+          )}
           <div class="p-6">
             <h3 class="font-display font-bold text-xl text-brand-dark group-hover:text-brand-blue transition-colors mb-2">
               {sport.name}

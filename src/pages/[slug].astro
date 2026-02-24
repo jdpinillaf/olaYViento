@@ -5,6 +5,7 @@ import Footer from '../components/layout/Footer.astro';
 import { programmaticPages, type ProgrammaticPage } from '../data/pages';
 import { getSportBySlug } from '../data/sports';
 import { getLocationBySlug } from '../data/locations';
+import { fetchPricing, applyPricing } from '../data/pricing';
 import {
   buildLocalBusinessSchema,
   buildCourseSchema,
@@ -24,7 +25,8 @@ interface Props {
 }
 
 const { page } = Astro.props;
-const sport = getSportBySlug(page.sportSlug)!;
+const pricing = await fetchPricing();
+const sport = applyPricing(getSportBySlug(page.sportSlug)!, pricing);
 const location = getLocationBySlug(page.locationSlug)!;
 
 const relatedPages = page.relatedSlugs
