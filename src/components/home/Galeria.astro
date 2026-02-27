@@ -1,13 +1,7 @@
 ---
-// Styled placeholders — replace with real images from Instagram later
-const images = [
-  { alt: 'Surf en Puerto Colombia', label: 'SURF', gradient: 'from-brand-blue via-brand-blue/70 to-cyan-600', icon: '🌊' },
-  { alt: 'Kitesurf en Barranquilla', label: 'KITESURF', gradient: 'from-brand-orange via-amber-500 to-brand-yellow', icon: '💨' },
-  { alt: 'Wing Foil en el Caribe', label: 'WING FOIL', gradient: 'from-brand-yellow via-brand-orange to-orange-600', icon: '🕊️' },
-  { alt: 'Atardecer en Puerto Mocho', label: 'ATARDECER', gradient: 'from-orange-500 via-pink-500 to-purple-600', icon: '🌅' },
-  { alt: 'Clases de surf para principiantes', label: 'CLASES', gradient: 'from-cyan-500 via-brand-blue to-blue-700', icon: '🤙' },
-  { alt: 'Comunidad Ola y Viento', label: 'COMUNIDAD', gradient: 'from-brand-blue via-brand-yellow/50 to-brand-orange', icon: '🏖️' },
-];
+import { fetchGallery } from '../../data/gallery';
+
+const items = await fetchGallery();
 ---
 
 <section id="galeria" class="py-16 sm:py-24 bg-white">
@@ -20,12 +14,36 @@ const images = [
     </div>
 
     <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
-      {images.map((img, i) => (
-        <div class={`aspect-square rounded-2xl bg-gradient-to-br ${img.gradient} flex flex-col items-center justify-center overflow-hidden relative group cursor-pointer`}>
-          <!-- Large emoji icon -->
-          <span class="text-5xl sm:text-6xl mb-2 opacity-80 group-hover:scale-110 transition-transform duration-300">{img.icon}</span>
-          <!-- Label overlay -->
-          <span class="font-display font-bold text-white text-sm sm:text-base tracking-wider opacity-90">{img.label}</span>
+      {items.map((item, i) => (
+        <div class="aspect-square rounded-2xl overflow-hidden relative group cursor-pointer">
+          {item.images.length > 1 ? (
+            <div
+              class="gallery-carousel flex w-full h-full overflow-x-hidden snap-x snap-mandatory"
+              data-offset={i * 500}
+            >
+              {item.images.map((src, j) => (
+                <img
+                  src={src}
+                  alt={`${item.title} ${j + 1}`}
+                  class="w-full h-full object-cover flex-shrink-0 snap-center"
+                  loading="lazy"
+                />
+              ))}
+            </div>
+          ) : (
+            <img
+              src={item.images[0]}
+              alt={item.title}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+          )}
+          <!-- Title overlay -->
+          <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-3 sm:p-4">
+            <span class="font-display font-bold text-white text-sm sm:text-base tracking-wider">
+              {item.title.toUpperCase()}
+            </span>
+          </div>
           <!-- Hover overlay -->
           <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
         </div>
@@ -47,3 +65,23 @@ const images = [
     </div>
   </div>
 </section>
+
+<script>
+  function initCarousels() {
+    const carousels = document.querySelectorAll<HTMLElement>('.gallery-carousel');
+    carousels.forEach((carousel) => {
+      const offset = parseInt(carousel.dataset.offset || '0', 10);
+      const slides = carousel.children.length;
+      if (slides <= 1) return;
+
+      let current = 0;
+      setInterval(() => {
+        current = (current + 1) % slides;
+        const width = carousel.offsetWidth;
+        carousel.scrollTo({ left: current * width, behavior: 'smooth' });
+      }, 3000 + offset);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initCarousels);
+</script>

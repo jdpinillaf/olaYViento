@@ -1,23 +1,19 @@
 ---
 ---
 
-<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+<section class="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
   <!-- Background gradient (replace with real image later) -->
   <div class="absolute inset-0 bg-gradient-to-br from-brand-blue via-brand-blue/80 to-brand-dark">
-    <!-- Decorative swirls -->
-    <svg class="absolute top-10 left-10 w-40 h-40 text-brand-yellow/20" viewBox="0 0 100 100" fill="currentColor">
-      <path d="M50 10 C70 10, 90 30, 90 50 C90 70, 70 90, 50 90 C30 90, 15 75, 20 55 C25 35, 40 30, 50 40 C60 50, 55 65, 45 65 C35 65, 30 55, 35 48" fill="none" stroke="currentColor" stroke-width="3"/>
-    </svg>
-    <svg class="absolute bottom-20 right-10 w-56 h-56 text-brand-orange/15" viewBox="0 0 100 100" fill="currentColor">
-      <path d="M50 10 C70 10, 90 30, 90 50 C90 70, 70 90, 50 90 C30 90, 15 75, 20 55 C25 35, 40 30, 50 40 C60 50, 55 65, 45 65 C35 65, 30 55, 35 48" fill="none" stroke="currentColor" stroke-width="4"/>
-    </svg>
+    <!-- Decorative spirals -->
+    <img src="/images/spirals/amarillo-blanco.png" alt="" aria-hidden="true" class="absolute top-10 left-10 w-40 h-40 opacity-20 pointer-events-none" />
+    <img src="/images/spirals/naranja-blanco.png" alt="" aria-hidden="true" class="absolute bottom-20 right-10 w-56 h-56 opacity-15 pointer-events-none" />
     <!-- Wave decoration at bottom -->
     <svg class="absolute bottom-0 left-0 right-0 w-full" viewBox="0 0 1440 120" fill="white" preserveAspectRatio="none">
       <path d="M0,60 C360,120 720,0 1080,60 C1260,90 1380,80 1440,70 L1440,120 L0,120 Z" />
     </svg>
   </div>
 
-  <div class="relative z-10 text-center px-4 max-w-4xl mx-auto pt-20">
+  <div class="relative z-10 text-center px-4 max-w-4xl mx-auto pt-20 pb-32">
     <!-- Logo -->
     <div class="mb-6">
       <img src="/images/logo-icon.png" alt="Ola y Viento" class="h-20 sm:h-24 mx-auto drop-shadow-lg" />

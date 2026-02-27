@@ -1,6 +1,7 @@
 import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { sportSchema } from './src/sanity/schemas/sport';
+import { galleryItemSchema } from './src/sanity/schemas/galleryItem';
 
 export default defineConfig({
   name: 'ola-y-viento',
@@ -9,6 +10,6 @@ export default defineConfig({
   dataset: 'production',
   plugins: [structureTool()],
   schema: {
-    types: [sportSchema],
+    types: [sportSchema, galleryItemSchema],
   },
 });
