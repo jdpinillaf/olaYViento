@@ -25,6 +25,8 @@ const items = await fetchGallery();
                 <img
                   src={src}
                   alt={`${item.title} ${j + 1}`}
+                  width="400"
+                  height="400"
                   class="w-full h-full object-cover flex-shrink-0 snap-center"
                   loading="lazy"
                 />
@@ -34,6 +36,8 @@ const items = await fetchGallery();
             <img
               src={item.images[0]}
               alt={item.title}
+              width="400"
+              height="400"
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               loading="lazy"
             />
@@ -68,6 +72,9 @@ const items = await fetchGallery();
 
 <script>
   function initCarousels() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
     const carousels = document.querySelectorAll<HTMLElement>('.gallery-carousel');
     carousels.forEach((carousel) => {
       const offset = parseInt(carousel.dataset.offset || '0', 10);

@@ -9,7 +9,7 @@ export const sportSchema = defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      description: 'Identificador único (debe coincidir con el slug en código: surf, kitesurf, wing-foil, windsurf, sup, entrenamiento-funcional)',
+      description: 'Identificador único (debe coincidir con el slug en código: surf, kitesurf, wing-foil, sup, entrenamiento-funcional)',
       validation: Rule => Rule.required(),
     }),
     defineField({

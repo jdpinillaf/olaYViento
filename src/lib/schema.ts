@@ -6,19 +6,58 @@ const SITE_URL = 'https://olayviento.com';
 const PHONE = '+573150031693';
 const WHATSAPP_URL = `https://wa.me/573150031693`;
 
+export function buildOrganizationSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': `${SITE_URL}/#organization`,
+    name: 'Ola y Viento',
+    url: SITE_URL,
+    logo: `${SITE_URL}/images/logo-horizontal.png`,
+    telephone: PHONE,
+    sameAs: [
+      'https://www.instagram.com/escuela_olayviento/',
+      WHATSAPP_URL,
+    ],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: PHONE,
+      contactType: 'customer service',
+      availableLanguage: 'Spanish',
+    },
+  };
+}
+
+export function buildWebSiteSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Ola y Viento',
+    url: SITE_URL,
+    publisher: {
+      '@id': `${SITE_URL}/#organization`,
+    },
+    inLanguage: 'es',
+  };
+}
+
 export function buildLocalBusinessSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'SportsActivityLocation',
+    '@id': `${SITE_URL}/#localbusiness`,
     name: 'Ola y Viento',
-    description: 'Escuela de deportes acuáticos en Barranquilla, Colombia. Clases de surf, kitesurf, wing foil y windsurf.',
+    description: 'Escuela de deportes náuticos en Barranquilla, Colombia. Clases de surf, kitesurf, wing foil y windsurf.',
     url: SITE_URL,
     telephone: PHONE,
     image: `${SITE_URL}/images/og-default.jpg`,
+    parentOrganization: {
+      '@id': `${SITE_URL}/#organization`,
+    },
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Playa de Puerto Mocho, Riomar',
-      addressLocality: 'Puerto Colombia, Barranquilla',
+      streetAddress: 'Cl. 2 #22-61, Pradomar',
+      addressLocality: 'Puerto Colombia',
       addressRegion: 'Atlántico',
       addressCountry: 'CO',
     },

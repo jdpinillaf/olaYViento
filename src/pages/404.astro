@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+---
+
+<BaseLayout
+  title="Página no encontrada | Ola y Viento"
+  description="La página que buscas no existe. Vuelve al inicio de Ola y Viento."
+  canonical="/404"
+>
+  <Header />
+  <main id="main-content" class="pt-20 min-h-[60vh] flex items-center justify-center">
+    <div class="text-center px-4">
+      <h1 class="font-display text-6xl sm:text-8xl font-bold text-brand-blue mb-4">404</h1>
+      <p class="text-xl sm:text-2xl text-gray-600 mb-8">
+        Esta página se la llevó la marea.
+      </p>
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange/90 text-white font-bold px-8 py-4 rounded-full text-lg transition-all hover:shadow-xl hover:scale-105"
+      >
+        Volver al inicio
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1" />
+        </svg>
+      </a>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

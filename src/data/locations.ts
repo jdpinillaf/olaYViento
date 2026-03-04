@@ -14,7 +14,7 @@ export const locations: Location[] = [
     department: 'Atlántico',
     country: 'Colombia',
     coordinates: { lat: 11.0041, lng: -74.8070 },
-    description: 'Capital del Atlántico, ubicada en la costa Caribe colombiana con acceso directo al mar y vientos alisios ideales para deportes acuáticos.',
+    description: 'Capital del Atlántico, ubicada en la costa Caribe colombiana con acceso directo al mar y vientos alisios ideales para deportes náuticos.',
   },
   {
     slug: 'puerto-colombia',
@@ -30,7 +30,7 @@ export const locations: Location[] = [
     department: 'Costa Caribe',
     country: 'Colombia',
     coordinates: { lat: 10.96, lng: -74.80 },
-    description: 'La costa Caribe de Colombia ofrece más de 1,600 km de litoral con vientos constantes, aguas cálidas y spots de clase mundial para deportes acuáticos.',
+    description: 'La costa Caribe de Colombia ofrece más de 1,600 km de litoral con vientos constantes, aguas cálidas y spots de clase mundial para deportes náuticos.',
   },
 ];
 

@@ -22,11 +22,6 @@ const FALLBACK: Record<string, PricingData> = {
     duration: '1 hora',
     includes: ['Wing', 'Tabla con foil', 'Chaleco salvavidas', 'Instructor certificado'],
   },
-  'windsurf': {
-    price: 'Desde $150.000 COP',
-    duration: '2 horas',
-    includes: ['Tabla de windsurf', 'Vela', 'Arnés', 'Instructor certificado', 'Seguro'],
-  },
   'sup': {
     price: 'Desde $60.000 (clase matutina)',
     duration: '1 hora',
