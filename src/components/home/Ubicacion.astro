@@ -2,15 +2,17 @@
 const sedes = [
   {
     name: 'Sede Pradomar',
-    address: 'Cl. 2 #22-61, Pradomar, Puerto Colombia, Atlántico',
+    address: 'Calle 2 No. 22-14, Pradomar, Puerto Colombia, Atlántico',
     hours: '6:00 AM - 5:00 PM',
-    mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.0!2d-74.9583!3d11.0128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sPradomar!5e0!3m2!1ses!2sco!4v1',
+    mapUrl: 'https://maps.google.com/maps?q=Cl.+2+%23+22-14,+Puerto+Colombia,+Atlántico&output=embed',
+    directionsUrl: 'https://maps.app.goo.gl/Bu7acmF6AV3ygYin9',
   },
   {
     name: 'Sede Puerto Mocho',
     address: 'Playa de Puerto Mocho, Puerto Colombia',
     hours: '10:30 AM - 5:30 PM',
-    mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7832.0!2d-74.8350!3d11.0100!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sPuerto+Mocho!5e0!3m2!1ses!2sco!4v1',
+    mapUrl: 'https://maps.google.com/maps?q=11.058663,-74.845335&output=embed',
+    directionsUrl: 'https://goo.gl/maps/PKtPa5anvpCAvCr47',
   },
 ];
 ---
@@ -39,9 +41,23 @@ const sedes = [
               title={`Ubicación ${sede.name}`}
             ></iframe>
           </div>
-          <div class="p-4 bg-gray-50">
-            <h3 class="font-display font-bold text-brand-dark">{sede.name}</h3>
-            <p class="text-gray-600 text-sm">{sede.address}</p>
+          <div class="p-4 bg-gray-50 flex items-center justify-between gap-4">
+            <div>
+              <h3 class="font-display font-bold text-brand-dark">{sede.name}</h3>
+              <p class="text-gray-600 text-sm">{sede.address}</p>
+            </div>
+            <a
+              href={sede.directionsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="shrink-0 inline-flex items-center gap-1.5 bg-brand-blue hover:bg-brand-blue/90 text-white text-sm font-semibold px-4 py-2 rounded-full transition-all hover:shadow-md"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+              Cómo llegar
+            </a>
           </div>
         </div>
       ))}
@@ -59,7 +75,7 @@ const sedes = [
             </svg>
             <div class="text-gray-600 text-sm">
               <p class="font-medium text-brand-dark">Sede Pradomar</p>
-              <p>Cl. 2 #22-61, Pradomar, Puerto Colombia, Atlántico</p>
+              <p>Calle 2 No. 22-14, Pradomar, Puerto Colombia, Atlántico</p>
             </div>
           </li>
           <li class="flex items-start gap-3">

@@ -21,9 +21,21 @@ const windColors: Record<string, string> = {
 };
 
 const windLabels: Record<string, string> = {
-  high: '20-30 kts',
-  medium: '15-22 kts',
-  low: '5-12 kts',
+  high: 'Fuerte',
+  medium: 'Medio',
+  low: 'Suave',
+};
+
+const windTooltips: Record<string, string> = {
+  high: 'Viento fuerte, perfecto para kitesurf',
+  medium: 'Viento moderado, bueno para windsurf y wing foil',
+  low: 'Viento suave, ideal para SUP y surf',
+};
+
+const windIcons: Record<string, string> = {
+  high: `<svg width="28" height="18" viewBox="0 0 28 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 3c4-2 8 2 12 0s8-2 12 0"/><path d="M2 9c4-2 8 2 12 0s8-2 12 0"/><path d="M2 15c4-2 8 2 12 0s8-2 12 0"/></svg>`,
+  medium: `<svg width="28" height="18" viewBox="0 0 28 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 6c4-2 8 2 12 0s8-2 12 0"/><path d="M2 12c4-2 8 2 12 0s8-2 12 0"/></svg>`,
+  low: `<svg width="28" height="18" viewBox="0 0 28 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 9c4-2 8 2 12 0s8-2 12 0"/></svg>`,
 };
 ---
 
@@ -41,26 +53,35 @@ const windLabels: Record<string, string> = {
     <!-- Calendar Grid -->
     <div class="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-12 gap-2 sm:gap-3 mb-8">
       {months.map(month => (
-        <div class={`rounded-xl p-3 sm:p-4 text-center ${windColors[month.wind]} transition-transform hover:scale-105`}>
+        <div class={`group relative rounded-xl p-3 sm:p-4 text-center ${windColors[month.wind]} transition-transform hover:scale-105 cursor-default`}>
           <div class="font-display font-bold text-sm sm:text-base">{month.name}</div>
-          <div class="text-xs mt-1 opacity-80">{windLabels[month.wind]}</div>
+          <div class="flex justify-center mt-1.5" set:html={windIcons[month.wind]} />
+          <div class="text-[10px] sm:text-xs mt-1 opacity-75 font-medium">{windLabels[month.wind]}</div>
+          <!-- Tooltip -->
+          <div class="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-full mb-2 w-44 rounded-lg bg-brand-dark text-white text-xs px-3 py-2 opacity-0 group-hover:opacity-100 transition-opacity z-10 text-center shadow-lg">
+            {windTooltips[month.wind]}
+            <div class="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-brand-dark"></div>
+          </div>
         </div>
       ))}
     </div>
 
     <!-- Legend -->
-    <div class="flex flex-wrap justify-center gap-4 sm:gap-6 text-sm">
+    <div class="flex flex-wrap justify-center gap-4 sm:gap-6 text-sm text-gray-600">
       <div class="flex items-center gap-2">
         <div class="w-4 h-4 rounded bg-brand-orange"></div>
-        <span class="text-gray-600">Temporada principal (20-30 kts)</span>
+        <div class="text-brand-orange flex items-center" set:html={windIcons.high} />
+        <span>Fuerte — kitesurf</span>
       </div>
       <div class="flex items-center gap-2">
         <div class="w-4 h-4 rounded bg-brand-yellow"></div>
-        <span class="text-gray-600">Segunda temporada (15-22 kts)</span>
+        <div class="text-brand-yellow flex items-center" set:html={windIcons.medium} />
+        <span>Moderado — windsurf, wing foil</span>
       </div>
       <div class="flex items-center gap-2">
         <div class="w-4 h-4 rounded bg-gray-200"></div>
-        <span class="text-gray-600">Viento suave</span>
+        <div class="text-gray-400 flex items-center" set:html={windIcons.low} />
+        <span>Suave — SUP, surf</span>
       </div>
     </div>
 

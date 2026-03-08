@@ -56,7 +56,7 @@ export function buildLocalBusinessSchema() {
     },
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Cl. 2 #22-61, Pradomar',
+      streetAddress: 'Calle 2 No. 22-14, Pradomar',
       addressLocality: 'Puerto Colombia',
       addressRegion: 'Atlántico',
       addressCountry: 'CO',
