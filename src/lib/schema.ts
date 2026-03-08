@@ -128,6 +128,20 @@ export function buildFAQSchema(faq: { question: string; answer: string }[]) {
   };
 }
 
+export function buildBlogPostSchema(post: { title: string; excerpt?: string; mainImage?: string | null; publishedAt: string; slug: string }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.excerpt || post.title,
+    ...(post.mainImage ? { image: post.mainImage } : {}),
+    datePublished: post.publishedAt,
+    author: { '@type': 'Organization', name: 'Ola y Viento' },
+    publisher: { '@id': `${SITE_URL}/#organization` },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/blog/${post.slug}` },
+  };
+}
+
 export function buildBreadcrumbSchema(items: { name: string; url: string }[]) {
   return {
     '@context': 'https://schema.org',
