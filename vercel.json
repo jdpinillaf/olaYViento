@@ -28,6 +28,101 @@
       "source": "/index.html",
       "destination": "/",
       "statusCode": 301
+    },
+    {
+      "source": "/kite-barranquilla",
+      "destination": "/escuela-de-kitesurf-barranquilla",
+      "statusCode": 301
+    },
+    {
+      "source": "/kite-surf-barranquilla",
+      "destination": "/escuela-de-kitesurf-barranquilla",
+      "statusCode": 301
+    },
+    {
+      "source": "/kite-quilla",
+      "destination": "/escuela-de-kitesurf-barranquilla",
+      "statusCode": 301
+    },
+    {
+      "source": "/kite-kiya-barranquilla",
+      "destination": "/escuela-de-kitesurf-barranquilla",
+      "statusCode": 301
+    },
+    {
+      "source": "/clases-de-kite-barranquilla",
+      "destination": "/clases-kitesurf-barranquilla",
+      "statusCode": 301
+    },
+    {
+      "source": "/wingfoil-barranquilla",
+      "destination": "/wing-foil-barranquilla",
+      "statusCode": 301
+    },
+    {
+      "source": "/wind-foil-barranquilla",
+      "destination": "/wing-foil-barranquilla",
+      "statusCode": 301
+    },
+    {
+      "source": "/hydrofoil-barranquilla",
+      "destination": "/wing-foil-barranquilla",
+      "statusCode": 301
+    },
+    {
+      "source": "/foil-barranquilla",
+      "destination": "/wing-foil-barranquilla",
+      "statusCode": 301
+    },
+    {
+      "source": "/escuela-de-surf-barranquilla",
+      "destination": "/clases-de-surf-barranquilla",
+      "statusCode": 301
+    },
+    {
+      "source": "/surf-barranquilla",
+      "destination": "/clases-de-surf-barranquilla",
+      "statusCode": 301
+    },
+    {
+      "source": "/kayak-barranquilla",
+      "destination": "/deportes-acuaticos-barranquilla",
+      "statusCode": 301
+    },
+    {
+      "source": "/bodyboard-barranquilla",
+      "destination": "/clases-de-surf-barranquilla",
+      "statusCode": 301
+    },
+    {
+      "source": "/wakeboard-barranquilla",
+      "destination": "/escuela-de-kitesurf-barranquilla",
+      "statusCode": 301
+    },
+    {
+      "source": "/surf-caribe-colombiano",
+      "destination": "/surf-colombia-caribe",
+      "statusCode": 301
+    },
+    {
+      "source": "/escuela-deportes-acuaticos-barranquilla",
+      "destination": "/deportes-acuaticos-barranquilla",
+      "statusCode": 301
+    },
+    {
+      "source": "/sup-barranquilla",
+      "destination": "/paddle-board-barranquilla",
+      "statusCode": 301
+    },
+    {
+      "source": "/kitesurf-atlantico",
+      "destination": "/kitesurf-colombia-caribe",
+      "statusCode": 301
+    },
+    {
+      "source": "/surf-atlantico-colombia",
+      "destination": "/surf-puerto-colombia",
+      "statusCode": 301
     }
   ]
 }

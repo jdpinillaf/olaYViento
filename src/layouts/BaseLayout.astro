@@ -17,7 +17,7 @@ const {
   schemas = [],
 } = Astro.props;
 
-const siteUrl = 'https://olayviento.com';
+const siteUrl = 'https://www.olayviento.co';
 const canonicalUrl = canonical ? `${siteUrl}${canonical}` : new URL(Astro.url.pathname, siteUrl).href;
 const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 ---

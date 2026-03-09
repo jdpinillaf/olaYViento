@@ -2,7 +2,7 @@ import type { ProgrammaticPage } from '../data/pages';
 import { getSportBySlug } from '../data/sports';
 import { getLocationBySlug } from '../data/locations';
 
-const SITE_URL = 'https://olayviento.com';
+const SITE_URL = 'https://www.olayviento.co';
 const PHONE = '+573150031693';
 const WHATSAPP_URL = `https://wa.me/573150031693`;
 
@@ -74,16 +74,35 @@ export function buildLocalBusinessSchema() {
   };
 }
 
+// Map human-readable durations to ISO 8601 format
+function toIsoDuration(duration: string): string {
+  const map: Record<string, string> = {
+    '1 hora': 'PT1H',
+    '1-8 horas': 'PT2H',
+    '2-8 horas': 'PT3H',
+  };
+  return map[duration] || 'PT1H';
+}
+
+// Extract numeric price from formatted price string (e.g. "Desde $44.400 (clase matutina)" → 44400)
+function extractNumericPrice(price: string): number | null {
+  const match = price.replace(/\./g, '').match(/\$?([\d,]+)/);
+  return match ? parseInt(match[1].replace(/,/g, ''), 10) : null;
+}
+
 export function buildCourseSchema(page: ProgrammaticPage) {
   const sport = getSportBySlug(page.sportSlug);
   const location = getLocationBySlug(page.locationSlug);
   if (!sport || !location) return null;
+
+  const numericPrice = extractNumericPrice(sport.price);
 
   return {
     '@context': 'https://schema.org',
     '@type': 'Course',
     name: page.h1,
     description: page.intro,
+    inLanguage: 'es',
     provider: {
       '@type': 'Organization',
       name: 'Ola y Viento',
@@ -92,7 +111,7 @@ export function buildCourseSchema(page: ProgrammaticPage) {
     hasCourseInstance: {
       '@type': 'CourseInstance',
       courseMode: 'onsite',
-      duration: sport.duration,
+      duration: toIsoDuration(sport.duration),
       location: {
         '@type': 'Place',
         name: location.name,
@@ -107,26 +126,16 @@ export function buildCourseSchema(page: ProgrammaticPage) {
     offers: {
       '@type': 'Offer',
       category: 'Clase de ' + sport.name,
+      ...(numericPrice ? { price: numericPrice.toString() } : {}),
       priceCurrency: 'COP',
       availability: 'https://schema.org/InStock',
+      url: `${SITE_URL}/${page.slug}`,
     },
   };
 }
 
-export function buildFAQSchema(faq: { question: string; answer: string }[]) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faq.map(item => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: item.answer,
-      },
-    })),
-  };
-}
+// FAQPage schema removed — Google restricted FAQ rich results
+// to government and healthcare sites only since August 2023.
 
 export function buildBlogPostSchema(post: { title: string; excerpt?: string; mainImage?: string | null; publishedAt: string; slug: string }) {
   return {

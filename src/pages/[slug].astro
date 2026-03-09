@@ -9,7 +9,6 @@ import { fetchPricing, applyPricing } from '../data/pricing';
 import {
   buildLocalBusinessSchema,
   buildCourseSchema,
-  buildFAQSchema,
   buildBreadcrumbSchema,
 } from '../lib/schema';
 
@@ -42,7 +41,6 @@ const breadcrumbs = [
 const schemas = [
   buildLocalBusinessSchema(),
   buildCourseSchema(page),
-  buildFAQSchema(page.faq),
   buildBreadcrumbSchema(breadcrumbs),
 ].filter(Boolean);
 ---

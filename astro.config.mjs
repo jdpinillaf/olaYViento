@@ -7,7 +7,8 @@ import react from '@astrojs/react';
 import vercel from '@astrojs/vercel';
 
 export default defineConfig({
-  site: 'https://olayviento.com',
+  site: 'https://www.olayviento.co',
+  trailingSlash: 'never',
   output: 'static',
   adapter: vercel(),
   vite: {
