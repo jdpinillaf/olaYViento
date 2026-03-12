@@ -5,7 +5,7 @@
 ## Información General
 
 - Nombre: Ola y Viento
-- Sitio web: https://olayviento.com
+- Sitio web: https://www.olayviento.co
 - Teléfono: +57 315 003 1693
 - WhatsApp: https://wa.me/573150031693
 - Instagram: https://www.instagram.com/escuela_olayviento/
@@ -35,10 +35,10 @@ Todas las clases incluyen equipamiento completo e instructor certificado.
 
 ## Páginas Principales
 
-- [Inicio](https://olayviento.com/)
-- [Clases de Surf en Barranquilla](https://olayviento.com/clases-de-surf-barranquilla)
-- [Escuela de Kitesurf en Barranquilla](https://olayviento.com/escuela-de-kitesurf-barranquilla)
-- [Clases de Kitesurf Barranquilla](https://olayviento.com/clases-kitesurf-barranquilla)
-- [Wing Foil en Barranquilla](https://olayviento.com/wing-foil-barranquilla)
-- [Kitesurf Colombia Caribe](https://olayviento.com/kitesurf-colombia-caribe)
-- [Surf Puerto Colombia](https://olayviento.com/surf-puerto-colombia)
+- [Inicio](https://www.olayviento.co/)
+- [Clases de Surf en Barranquilla](https://www.olayviento.co/clases-de-surf-barranquilla)
+- [Escuela de Kitesurf en Barranquilla](https://www.olayviento.co/escuela-de-kitesurf-barranquilla)
+- [Clases de Kitesurf Barranquilla](https://www.olayviento.co/clases-kitesurf-barranquilla)
+- [Wing Foil en Barranquilla](https://www.olayviento.co/wing-foil-barranquilla)
+- [Kitesurf Colombia Caribe](https://www.olayviento.co/kitesurf-colombia-caribe)
+- [Surf Puerto Colombia](https://www.olayviento.co/surf-puerto-colombia)

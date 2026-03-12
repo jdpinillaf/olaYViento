@@ -14,7 +14,7 @@ const navItems = [
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 sm:h-20">
     <!-- Logo -->
     <a href="/" class="shrink-0">
-      <img src="/images/logo-horizontal.png" alt="Ola y Viento" class="h-14 sm:h-16 w-auto" />
+      <img src="/images/logo-horizontal.png" alt="Ola y Viento" width="2084" height="500" class="h-14 sm:h-16 w-auto" />
     </a>
 
     <!-- Desktop Nav -->
@@ -37,6 +37,8 @@ const navItems = [
       id="menu-toggle"
       class="md:hidden p-2 text-brand-dark"
       aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
     >
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -98,15 +100,20 @@ const navItems = [
   });
 
   // Mobile menu toggle
-  const toggle = document.getElementById('menu-toggle');
+  const toggle = document.getElementById('menu-toggle') as HTMLButtonElement | null;
   const menu = document.getElementById('mobile-menu');
   toggle?.addEventListener('click', () => {
+    const isOpen = !menu?.classList.contains('hidden');
     menu?.classList.toggle('hidden');
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+    toggle.setAttribute('aria-label', isOpen ? 'Abrir menú' : 'Cerrar menú');
   });
 
   document.querySelectorAll('.mobile-nav-link').forEach(link => {
     link.addEventListener('click', () => {
       menu?.classList.add('hidden');
+      toggle?.setAttribute('aria-expanded', 'false');
+      toggle?.setAttribute('aria-label', 'Abrir menú');
     });
   });
 </script>

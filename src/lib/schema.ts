@@ -71,6 +71,10 @@ export function buildLocalBusinessSchema() {
       WHATSAPP_URL,
     ],
     priceRange: '$$',
+    openingHours: [
+      'Mo-Su 06:00-17:00',  // Sede Pradomar
+      'Mo-Su 10:30-17:30',  // Sede Puerto Mocho
+    ],
   };
 }
 
@@ -105,8 +109,8 @@ export function buildCourseSchema(page: ProgrammaticPage) {
     inLanguage: 'es',
     provider: {
       '@type': 'Organization',
+      '@id': `${SITE_URL}/#organization`,
       name: 'Ola y Viento',
-      sameAs: SITE_URL,
     },
     hasCourseInstance: {
       '@type': 'CourseInstance',
