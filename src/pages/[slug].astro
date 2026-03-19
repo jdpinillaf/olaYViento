@@ -10,6 +10,7 @@ import {
   buildLocalBusinessSchema,
   buildCourseSchema,
   buildBreadcrumbSchema,
+  buildFAQPageSchema,
 } from '../lib/schema';
 
 export function getStaticPaths() {
@@ -34,14 +35,14 @@ const relatedPages = page.relatedSlugs
 
 const breadcrumbs = [
   { name: 'Inicio', url: '/' },
-  { name: sport.name, url: `/${page.slug}` },
-  { name: location.name, url: `/${page.slug}` },
+  { name: page.h1, url: `/${page.slug}` },
 ];
 
 const schemas = [
   buildLocalBusinessSchema(),
   buildCourseSchema(page),
   buildBreadcrumbSchema(breadcrumbs),
+  buildFAQPageSchema(page.faq),
 ].filter(Boolean);
 ---
 

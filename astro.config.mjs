@@ -15,7 +15,12 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
   integrations: [
-    sitemap(),
+    sitemap({
+      serialize(item) {
+        item.lastmod = new Date().toISOString();
+        return item;
+      },
+    }),
     react(),
     sanity({
       projectId: process.env.PUBLIC_SANITY_PROJECT_ID || 'xqqdaj8t',

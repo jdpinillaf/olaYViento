@@ -30,6 +30,11 @@
       "statusCode": 301
     },
     {
+      "source": "/kitesurf-barranquilla",
+      "destination": "/clases-kitesurf-barranquilla",
+      "statusCode": 301
+    },
+    {
       "source": "/kite-barranquilla",
       "destination": "/escuela-de-kitesurf-barranquilla",
       "statusCode": 301

@@ -10,16 +10,27 @@ import Galeria from '../components/home/Galeria.astro';
 import Reservar from '../components/home/Reservar.astro';
 import Ubicacion from '../components/home/Ubicacion.astro';
 import FAQ from '../components/home/FAQ.astro';
-import { buildLocalBusinessSchema, buildOrganizationSchema, buildWebSiteSchema } from '../lib/schema';
+import { buildLocalBusinessSchema, buildOrganizationSchema, buildWebSiteSchema, buildFAQPageSchema } from '../lib/schema';
 
 const title = 'Ola y Viento | Escuela de Surf, Kitesurf y Wing Foil en Barranquilla';
 const description = 'Escuela de deportes náuticos en Barranquilla, Colombia. Clases de surf, kitesurf, wing foil y SUP para todos los niveles. Instructores certificados, equipos incluidos. ¡Reserva hoy!';
+
+const homeFaqs = [
+  { question: '¿Qué deportes náuticos enseñan en Ola y Viento?', answer: 'Ofrecemos clases de surf, kitesurf, wing foil, SUP (Stand Up Paddle) y programas de entrenamiento funcional orientados a deportes náuticos.' },
+  { question: '¿Necesito experiencia previa para tomar clases?', answer: 'No, todas nuestras clases están diseñadas para todos los niveles, desde principiantes absolutos hasta avanzados. Nuestros instructores adaptan cada sesión a tu nivel.' },
+  { question: '¿Qué incluyen las clases?', answer: 'Todas las clases incluyen el equipamiento completo (tablas, velas, arneses, chalecos), instrucción profesional, teoría de seguridad y práctica en el agua. Solo necesitas traer protector solar y ganas.' },
+  { question: '¿Cuál es la mejor época del año para deportes náuticos en Barranquilla?', answer: 'Para deportes de viento (kitesurf, wing foil), la mejor época es de diciembre a abril y de junio a agosto. El surf funciona todo el año, con mejores olas de diciembre a marzo.' },
+  { question: '¿A partir de qué edad aceptan estudiantes?', answer: 'Para surf y SUP aceptamos desde los 6 años. Para kitesurf y wing foil recomendamos a partir de los 12 años, evaluando caso por caso. Siempre con autorización de los padres.' },
+  { question: '¿Cómo reservo una clase?', answer: 'Puedes reservar directamente por WhatsApp al +57 315 003 1693 o a través de nuestro sistema de reservas en línea. Te recomendamos reservar con al menos 24 horas de anticipación.' },
+  { question: '¿Qué pasa si llueve o no hay viento?', answer: 'Si las condiciones climáticas no son seguras o adecuadas para la clase, la reprogramamos sin costo adicional. Tu seguridad siempre es nuestra prioridad.' },
+];
 
 const schemas = [
   buildOrganizationSchema(),
   buildWebSiteSchema(),
   buildLocalBusinessSchema(),
-];
+  buildFAQPageSchema(homeFaqs),
+].filter(Boolean);
 ---
 
 <BaseLayout title={title} description={description} canonical="/" schemas={schemas}>

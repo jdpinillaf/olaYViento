@@ -138,8 +138,21 @@ export function buildCourseSchema(page: ProgrammaticPage) {
   };
 }
 
-// FAQPage schema removed — Google restricted FAQ rich results
-// to government and healthcare sites only since August 2023.
+export function buildFAQPageSchema(faq: { question: string; answer: string }[]) {
+  if (!faq || faq.length === 0) return null;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map(item => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  };
+}
 
 export function buildBlogPostSchema(post: { title: string; excerpt?: string; mainImage?: string | null; publishedAt: string; slug: string }) {
   return {

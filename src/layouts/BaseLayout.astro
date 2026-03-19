@@ -7,6 +7,7 @@ interface Props {
   ogImage?: string;
   canonical?: string;
   schemas?: object[];
+  noindex?: boolean;
 }
 
 const {
@@ -15,6 +16,7 @@ const {
   ogImage = '/images/og-default.jpg',
   canonical,
   schemas = [],
+  noindex = false,
 } = Astro.props;
 
 const siteUrl = 'https://www.olayviento.co';
@@ -30,9 +32,9 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`
   <meta name="google-site-verification" content="yHNPhsYHv3TxNk819CRJqJx2HEOXRNdMzRFcxeBEvuo" />
   <title>{title}</title>
   <meta name="description" content={description} />
-  <meta name="robots" content="index, follow" />
+  <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
   <meta name="theme-color" content="#54ADDB" />
-  <link rel="canonical" href={canonicalUrl} />
+  {!noindex && <link rel="canonical" href={canonicalUrl} />}
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -51,10 +53,12 @@ const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={ogImageUrl} />
 
-  <!-- Fonts -->
+  <!-- Fonts (non-blocking for better LCP) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Inter:wght@400;500;600&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" /></noscript>
 
   <!-- RSS -->
   <link rel="alternate" type="application/rss+xml" title="Ola y Viento Blog" href="/rss.xml" />
