@@ -60,6 +60,7 @@ export const postSchema = defineType({
           { title: 'Kitesurf', value: 'kitesurf' },
           { title: 'Wing Foil', value: 'wing-foil' },
           { title: 'SUP', value: 'sup' },
+          { title: 'Entrenamiento Funcional', value: 'entrenamiento-funcional' },
         ],
       },
     }),

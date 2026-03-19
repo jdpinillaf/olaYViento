@@ -29,8 +29,10 @@ export async function fetchTestimonials(): Promise<Testimonial[]> {
       return FALLBACK;
     }
 
-    console.log(`[testimonials] Loaded ${results.length} testimonials from Sanity`);
-    return results;
+    // Filter out testimonials without a valid video URL
+    const valid = results.filter(t => t.videoUrl);
+    console.log(`[testimonials] Loaded ${valid.length} testimonials from Sanity`);
+    return valid;
   } catch (err) {
     console.warn('[testimonials] Sanity fetch failed — using fallback:', err);
     return FALLBACK;

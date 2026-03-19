@@ -25,7 +25,13 @@ export async function fetchPosts(): Promise<BlogPost[]> {
       "slug": slug.current,
       excerpt,
       "mainImage": mainImage.asset->url,
-      body,
+      body[]{
+        ...,
+        _type == "image" => {
+          ...,
+          "url": asset->url
+        }
+      },
       sportSlug,
       publishedAt,
       tags
@@ -45,30 +51,3 @@ export async function fetchPosts(): Promise<BlogPost[]> {
   }
 }
 
-export async function fetchPostBySlug(slug: string): Promise<BlogPost | null> {
-  const projectId = import.meta.env.PUBLIC_SANITY_PROJECT_ID;
-
-  // Check Sanity first
-  if (projectId) {
-    try {
-      const { client } = await import('../sanity/client');
-      const query = `*[_type == "post" && slug.current == $slug][0] {
-        title,
-        "slug": slug.current,
-        excerpt,
-        "mainImage": mainImage.asset->url,
-        body,
-        sportSlug,
-        publishedAt,
-        tags
-      }`;
-      const post = await client.fetch<BlogPost | null>(query, { slug });
-      if (post) return post;
-    } catch {
-      // Fall through to seed posts
-    }
-  }
-
-  // Fallback to seed posts
-  return seedPosts.find(p => p.slug === slug) || null;
-}

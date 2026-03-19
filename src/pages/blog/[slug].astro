@@ -66,10 +66,9 @@ function renderBlock(block: any): string {
     }
   }
 
-  if (block._type === 'image' && block.asset?._ref) {
-    // For image blocks with asset references, we can't resolve URL at render time
-    // This case is handled by Sanity CDN URL in the GROQ query if expanded
-    return '';
+  if (block._type === 'image' && block.url) {
+    const alt = block.alt || '';
+    return `<figure class="my-8"><img src="${block.url}" alt="${alt}" class="w-full h-auto rounded-xl" loading="lazy" />${alt ? `<figcaption class="text-center text-sm text-gray-400 mt-2">${alt}</figcaption>` : ''}</figure>`;
   }
 
   return '';
