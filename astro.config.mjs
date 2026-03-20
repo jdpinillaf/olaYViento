@@ -16,10 +16,7 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      serialize(item) {
-        item.lastmod = new Date().toISOString();
-        return item;
-      },
+      filter: (page) => !page.includes('/404') && !page.includes('/studio'),
     }),
     react(),
     sanity({
