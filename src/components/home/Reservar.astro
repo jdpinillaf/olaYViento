@@ -13,7 +13,7 @@
     </div>
 
     <!-- AgendaPro Embed -->
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+    <div id="agendapro-wrap" class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
       <iframe
         src="https://olayviento.site.agendapro.com/co"
         width="100%"
@@ -31,10 +31,40 @@
         href="https://wa.me/573150031693?text=Hola%2C%20quiero%20reservar%20una%20clase"
         target="_blank"
         rel="noopener noreferrer"
+        data-track="WhatsApp Click"
+        data-track-location="reservar_fallback"
         class="text-brand-blue hover:underline font-medium"
       >
         Escríbenos aquí
       </a>
     </p>
   </div>
+
+  <script is:inline>
+    (function(){
+      var wrap = document.getElementById('agendapro-wrap');
+      if(!wrap) return;
+      var seen = false;
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting && !seen && window.mixpanel && window.mixpanel.track){
+            seen = true;
+            window.mixpanel.track('AgendaPro View', { page_path: location.pathname });
+            io.disconnect();
+          }
+        });
+      }, { threshold: 0.5 });
+      io.observe(wrap);
+      var clicked = false;
+      window.addEventListener('blur', function(){
+        if(clicked) return;
+        if(document.activeElement && document.activeElement.tagName === 'IFRAME'){
+          clicked = true;
+          if(window.mixpanel && window.mixpanel.track){
+            window.mixpanel.track('AgendaPro Interact', { page_path: location.pathname });
+          }
+        }
+      });
+    })();
+  </script>
 </section>

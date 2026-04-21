@@ -10,6 +10,7 @@ import {
   buildLocalBusinessSchema,
   buildCourseSchema,
   buildBreadcrumbSchema,
+  buildFAQPageSchema,
 } from '../lib/schema';
 
 export function getStaticPaths() {
@@ -40,6 +41,7 @@ const breadcrumbs = [
 const schemas = [
   buildLocalBusinessSchema(),
   buildCourseSchema(page),
+  buildFAQPageSchema(page.faq),
   buildBreadcrumbSchema(breadcrumbs),
 ].filter(Boolean);
 ---
@@ -81,6 +83,10 @@ const schemas = [
         </p>
         <a
           href="#reservar-clase"
+          data-track="Reservar Click"
+          data-track-location="programmatic_hero"
+          data-track-sport={sport.slug}
+          data-track-page={page.slug}
           class="inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange/90 text-white font-bold px-8 py-4 rounded-full text-lg mt-8 transition-all hover:shadow-xl hover:scale-105"
         >
           Reserva tu Clase
@@ -156,6 +162,10 @@ const schemas = [
             href={`https://wa.me/573150031693?text=Hola%2C%20quiero%20reservar%20una%20clase%20de%20${encodeURIComponent(sport.name)}`}
             target="_blank"
             rel="noopener noreferrer"
+            data-track="WhatsApp Click"
+            data-track-location="programmatic_fallback"
+            data-track-sport={sport.slug}
+            data-track-page={page.slug}
             class="text-brand-blue hover:underline font-medium"
           >
             Escríbenos aquí
@@ -171,9 +181,9 @@ const schemas = [
           Preguntas Frecuentes
         </h2>
         <div class="space-y-3">
-          {page.faq.map(faq => (
+          {page.faq.map((faq, i) => (
             <details class="group bg-gray-50 rounded-xl border border-gray-200 hover:border-brand-blue/30 transition-colors">
-              <summary class="flex items-center justify-between cursor-pointer p-5 font-medium text-brand-dark list-none">
+              <summary data-track="FAQ Open" data-track-question={faq.question} data-track-index={String(i)} data-track-page={page.slug} class="flex items-center justify-between cursor-pointer p-5 font-medium text-brand-dark list-none">
                 <span class="pr-4">{faq.question}</span>
                 <svg class="w-5 h-5 shrink-0 text-brand-blue transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -201,6 +211,10 @@ const schemas = [
               return (
                 <a
                   href={`/${related.slug}`}
+                  data-track="Related Page Click"
+                  data-track-location="programmatic_related"
+                  data-track-from={page.slug}
+                  data-track-to={related.slug}
                   class="bg-white rounded-xl p-6 border border-gray-200 hover:border-brand-blue/30 hover:shadow-md transition-all group"
                 >
                   <span class="text-2xl mb-2 block">{relatedSport.icon}</span>

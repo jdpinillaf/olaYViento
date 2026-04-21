@@ -42,7 +42,7 @@ const faqs = [
     <div class="space-y-3">
       {faqs.map((faq, i) => (
         <details class="group bg-white rounded-xl border border-gray-200 hover:border-brand-blue/30 transition-colors">
-          <summary class="flex items-center justify-between cursor-pointer p-5 font-medium text-brand-dark list-none">
+          <summary data-track="FAQ Open" data-track-question={faq.question} data-track-index={String(i)} class="flex items-center justify-between cursor-pointer p-5 font-medium text-brand-dark list-none">
             <span class="pr-4">{faq.question}</span>
             <svg class="w-5 h-5 shrink-0 text-brand-blue transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />

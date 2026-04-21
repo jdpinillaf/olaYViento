@@ -4,6 +4,19 @@ export const sportSchema = defineType({
   name: 'sport',
   title: 'Deporte',
   type: 'document',
+  preview: {
+    select: { slug: 'slug.current', price: 'price', media: 'image' },
+    prepare({ slug, price, media }) {
+      const names: Record<string, string> = {
+        'surf': 'Surf',
+        'kitesurf': 'Kitesurf',
+        'wing-foil': 'Wing Foil',
+        'sup': 'SUP (Paddle Board)',
+        'entrenamiento-funcional': 'Entrenamiento Funcional',
+      };
+      return { title: names[slug] || slug, subtitle: price, media };
+    },
+  },
   fields: [
     defineField({
       name: 'slug',

@@ -28,7 +28,7 @@ const sportLinks = sports.filter(s => s.slug !== 'entrenamiento-funcional' && s.
         <ul class="space-y-2">
           {sportLinks.map(link => (
             <li>
-              <a href={link.href} class="text-white/70 hover:text-brand-blue text-sm transition-colors">
+              <a href={link.href} data-track="Footer Click" data-track-location="footer_sports" data-track-label={link.label} class="text-white/70 hover:text-brand-blue text-sm transition-colors">
                 {link.label}
               </a>
             </li>
@@ -40,11 +40,11 @@ const sportLinks = sports.filter(s => s.slug !== 'entrenamiento-funcional' && s.
       <div>
         <h3 class="font-display font-semibold text-brand-yellow mb-4">Escuela</h3>
         <ul class="space-y-2">
-          <li><a href="/#nosotros" class="text-white/70 hover:text-brand-blue text-sm transition-colors">Sobre Nosotros</a></li>
-          <li><a href="/#galeria" class="text-white/70 hover:text-brand-blue text-sm transition-colors">Galería</a></li>
-          <li><a href="/#reservar" class="text-white/70 hover:text-brand-blue text-sm transition-colors">Reservar Clase</a></li>
-          <li><a href="/#ubicacion" class="text-white/70 hover:text-brand-blue text-sm transition-colors">Ubicación</a></li>
-          <li><a href="/blog" class="text-white/70 hover:text-brand-blue text-sm transition-colors">Blog</a></li>
+          <li><a href="/#nosotros" data-track="Footer Click" data-track-location="footer_school" data-track-label="Sobre Nosotros" class="text-white/70 hover:text-brand-blue text-sm transition-colors">Sobre Nosotros</a></li>
+          <li><a href="/#galeria" data-track="Footer Click" data-track-location="footer_school" data-track-label="Galería" class="text-white/70 hover:text-brand-blue text-sm transition-colors">Galería</a></li>
+          <li><a href="/#reservar" data-track="Reservar Click" data-track-location="footer_school" class="text-white/70 hover:text-brand-blue text-sm transition-colors">Reservar Clase</a></li>
+          <li><a href="/#ubicacion" data-track="Footer Click" data-track-location="footer_school" data-track-label="Ubicación" class="text-white/70 hover:text-brand-blue text-sm transition-colors">Ubicación</a></li>
+          <li><a href="/blog" data-track="Footer Click" data-track-location="footer_school" data-track-label="Blog" class="text-white/70 hover:text-brand-blue text-sm transition-colors">Blog</a></li>
         </ul>
       </div>
 
@@ -55,7 +55,7 @@ const sportLinks = sports.filter(s => s.slug !== 'entrenamiento-funcional' && s.
           <li>Calle 2 No. 22-14, Pradomar, Puerto Colombia</li>
           <li>Playa de Puerto Mocho, Puerto Colombia</li>
           <li>
-            <a href="tel:+573150031693" class="hover:text-brand-blue transition-colors">+57 315 003 1693</a>
+            <a href="tel:+573150031693" data-track="Phone Click" data-track-location="footer" class="hover:text-brand-blue transition-colors">+57 315 003 1693</a>
           </li>
           <li class="flex gap-4 pt-2">
             <a
@@ -63,6 +63,9 @@ const sportLinks = sports.filter(s => s.slug !== 'entrenamiento-funcional' && s.
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
+              data-track="Social Click"
+              data-track-location="footer"
+              data-track-network="instagram"
               class="text-white/70 hover:text-brand-orange transition-colors"
             >
               <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -74,6 +77,8 @@ const sportLinks = sports.filter(s => s.slug !== 'entrenamiento-funcional' && s.
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp"
+              data-track="WhatsApp Click"
+              data-track-location="footer"
               class="text-white/70 hover:text-[#25D366] transition-colors"
             >
               <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
